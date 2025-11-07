@@ -1,0 +1,269 @@
+/* ================= BODY ================= */
+body {
+    font-family: Inter, system-ui, Arial;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+}
+
+/* =================  ŒÕ“≈…Õ≈– ================= */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ================= TOPBAR ================= */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #1f2937;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #374151;
+}
+
+    .topbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        margin-right: 16px;
+        padding: 4px 8px;
+        background-color: #374151;
+        border-radius: 6px;
+    }
+
+        .topbar a:hover {
+            background-color: #4b5563;
+            text-decoration: underline;
+        }
+
+    .topbar button {
+        background-color: #ef4444;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+        .topbar button:hover {
+            background-color: #dc2626;
+        }
+
+/* ================= —≈“ ¿  ŒÕ“≈Õ“¿ ================= */
+.content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+/* =================  ¿–“Œ◊ » ================= */
+.card, .task-card, .project-card {
+    flex: 1 1 280px;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .card:hover, .task-card:hover, .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    /* ================= «¿√ŒÀŒ¬ » ================= */
+    .card h2, .task-card h2, .project-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: #1d4ed8;
+    }
+
+.project-title, .task-title a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .project-title:hover, .task-title a:hover {
+        text-decoration: underline;
+    }
+
+/* ================= Œœ»—¿Õ»≈ ================= */
+.project-description, .task-project {
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.4rem;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ================= ‘»À‹“–€ ================= */
+.filters, .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+    .filters select, .filter-bar select {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        font-size: 0.9rem;
+    }
+
+/* ================= Ã≈“ » ================= */
+.task-meta, .project-meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.task-priority, .task-status {
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.bg-blue-100 {
+    background-color: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.bg-yellow-100 {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.bg-green-100 {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.bg-gray-100 {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.bg-purple-100 {
+    background-color: #e9d5ff;
+    color: #6b21a8;
+}
+
+.bg-red-100 {
+    background-color: #fecaca;
+    color: #b91c1c;
+}
+
+/* =================  ÕŒœ » ================= */
+.btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+    .btn-primary:hover {
+        background-color: #2563eb;
+    }
+
+.btn-secondary {
+    background-color: #10b981;
+    color: white;
+}
+
+    .btn-secondary:hover {
+        background-color: #059669;
+    }
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+}
+
+    .btn-danger:hover {
+        background-color: #dc2626;
+    }
+
+/* ================= —≈“ ¿ «¿ƒ¿◊ ================= */
+.tasks-grid, .projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* ================= œ”—“€≈ —Œ—“ŒﬂÕ»ﬂ ================= */
+.no-tasks, .no-projects {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #6b7280;
+}
+
+/* ================= “¿¡À»÷€ ================= */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+    .table th, .table td {
+        padding: 12px 8px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .table th {
+        text-align: left;
+        font-weight: 600;
+        color: #374151;
+        background-color: #f3f4f6;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f9fafb;
+    }
+
+    .table a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
+
+        .table a:hover {
+            text-decoration: underline;
+        }
+
+/* ================= Œÿ»¡ » ================= */
+.error-msg {
+    color: #ef4444;
+    margin-bottom: 12px;
+}
