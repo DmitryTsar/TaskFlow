@@ -1,9 +1,10 @@
 🚀 TaskFlow
 
-TaskFlow — это кроссплатформенное приложение для управления задачами.
-Бэкенд — ASP.NET Core 8 (CQRS, EF Core, JWT), фронтенд — React + Vite, база данных — MS SQL Server.
+TaskFlow — кроссплатформенное приложение для управления задачами.
+Бэкенд — ASP.NET Core 8 (CQRS, EF Core, JWT).
+Фронтенд — React + Vite.
+База данных — MS SQL Server.
 
-📁 Структура проекта
 TaskFlow/
 ├─ TaskFlow.API/              # ASP.NET Core Web API
 ├─ TaskFlow.Application/      # CQRS, DTO, Handlers
@@ -12,6 +13,7 @@ TaskFlow/
 ├─ TaskFlow.Client/           # React + Vite фронтенд
 ├─ TaskFlow.Tests/            # Unit-тесты
 ├─ docker-compose.yml         # Контейнеризация всех сервисов
+├─ .env.example               # Пример переменных окружения
 ├─ TaskFlow.sln
 └─ README.md
 
@@ -26,21 +28,28 @@ Git (для клонирования репозитория)
 1️. Клонировать репозиторий
 git clone https://github.com/yourusername/TaskFlow.git
 cd TaskFlow
-2️. Собрать и запустить контейнеры
+2.Создайте файл .env на основе примера:
+	cp .env.example .env  # Linux / macOS
+	copy .env.example .env # Windows PowerShell
+3. Отредактируйте .env, указав свои значения:
+	SA_PASSWORD=YourStrongPassword123!
+	ASPNETCORE_ENVIRONMENT=Development
+	ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TaskFlowDb;User Id=sa;Password=YourStrongPasswordHere;TrustServerCertificate=True;
+4. Собрать и запустить контейнеры
 docker compose up --build
-3️. Проверить работу
+5. Проверить работу
 Сервис	URL	Описание
 🌐 Клиент (React)	http://localhost:5173
 	Веб-интерфейс
 ⚙️ API (Swagger)	http://localhost:5000/swagger
 	Документация API
 🐘 SQL Server	localhost:1433	Внутренний контейнер
-4️. Остановить контейнеры
-docker compose down
-5️. Просмотр логов
-docker compose logs -f api
-docker compose logs -f client
-docker compose logs -f sqlserver
+6. Остановить контейнеры
+	docker compose down
+7. Просмотр логов
+	docker compose logs -f api
+	docker compose logs -f client
+	docker compose logs -f sqlserver
 
 🧩 Автоматическая миграция базы данных
 При старте контейнера TaskFlow.API выполняется:
@@ -57,31 +66,28 @@ Development	   ASPNETCORE_ENVIRONMENT=Development	LocalDB / Docker SQL	DevSuperS
 
 Production	   ASPNETCORE_ENVIRONMENT=Production	    Docker SQL	        ProdSuperSecretKey...
 
-⚠️ В продакшне TaskFlow.API использует соединение: 
-Server=sqlserver;Database=TaskFlowDb;User Id=sa;Password=Your_strong!Passw0rd;TrustServerCertificate=True;
+🧰 Полезные команды:
+	Команда	Описание
+	docker compose build	        Собрать образы без запуска
+	docker compose up -d	        Запуск в фоне
+	docker compose down -v	        Удалить контейнеры и volume базы
+	docker compose ps	            Проверить состояние
+	docker exec -it 
+	taskflow-sql 
+	/opt/mssql-tools/bin
+	/sqlcmd -S localhost -U 
+	sa -P "Your_strong!Passw0rd"	Подключиться к SQL Server в контейнере
+	dotnet ef migrations add Init	Добавить миграцию вручную
+	dotnet ef database update	    Применить миграции вручную
 
-🧰 Полезные команды
-Команда	Описание
-docker compose build	        Собрать образы без запуска
-docker compose up -d	        Запуск в фоне
-docker compose down -v	        Удалить контейнеры и volume базы
-docker compose ps	            Проверить состояние
-docker exec -it 
-taskflow-sql 
-/opt/mssql-tools/bin
-/sqlcmd -S localhost -U 
-sa -P "Your_strong!Passw0rd"	Подключиться к SQL Server в контейнере
-dotnet ef migrations add Init	Добавить миграцию вручную
-dotnet ef database update	    Применить миграции вручную
-
-🧾 Переменные окружения
-Переменная	                                  Описание	Пример
-ConnectionStrings__DefaultConnection	Строка подключения к MSSQL	Server=sqlserver;Database=TaskFlowDb;User Id=sa;Password=Your_strong!Passw0rd;
-ASPNETCORE_ENVIRONMENT	                Окружение	                Development / Production
-Jwt__Key	                            Секрет для JWT токенов	    ProdSuperSecretKey123...
+🧾 Переменные окружения(.env.example):
+	Переменная	                            Описание                    Пример
+	ConnectionStrings__DefaultConnection	Строка подключения к MSSQL	Server=sqlserver;Database=TaskFlowDb;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True;
+	ASPNETCORE_ENVIRONMENT	                Окружение	                Development / Production
+	SA_PASSWORD	                            ${SA_PASSWORD}
 
 ✅ Готово
-После запуска:
-API автоматически применяет EF Core миграции;
-клиент доступен по адресу http://localhost:5173;
-Swagger доступен на http://localhost:5000/swagger.
+	После запуска:
+		API автоматически применяет EF Core миграции;
+		клиент доступен по адресу http://localhost:5173;
+		Swagger доступен на http://localhost:5000/swagger.
